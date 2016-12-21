@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calculadora</string>
+
+    <string name="label_comecar">Começar</string>
+    <string name="label_voltar">Voltar</string>
+    <string name="msg_maximo_caracter">Limite de caracteres atingido.</string>
+    <string name="msg_divisao_por_zero">Não existe divisão por zero.</string>
+
+</resources>
