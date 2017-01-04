@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Invocando outras Atividades</string>
+
+    <string-array name="opcoes">
+        <item>Invocação sem retorno</item>
+        <item>Invocação com retorno</item>
+    </string-array>
+</resources>
