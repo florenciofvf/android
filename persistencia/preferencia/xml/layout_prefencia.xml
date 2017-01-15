@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <PreferenceCategory android:title="@string/titulo_categoria">
+        <CheckBoxPreference
+            android:key="estado_teste"
+            android:summary="@string/sumario"
+            android:title="@string/titulo">
+        </CheckBoxPreference>
+
+        <EditTextPreference
+            android:key="txtNome"
+            android:summary="Sumário nome"
+            android:title="Título nome">
+        </EditTextPreference>
+    </PreferenceCategory>
+
+</PreferenceScreen>
