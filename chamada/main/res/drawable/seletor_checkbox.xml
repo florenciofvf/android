@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:left="12dp">
+                <shape>
+                    <stroke android:width="2px" android:color="@color/azul" />
+                    <size android:width="24dp" android:height="24dp" />
+                    <corners android:radius="@dimen/raio" />
+                </shape>
+            </item>
+            <item android:left="15dp">
+                <rotate android:fromDegrees="45" android:toDegrees="45" android:pivotX="20%" android:pivotY="10%">
+                    <shape android:shape="line">
+                        <stroke android:width="5dp" android:color="#009900" />
+                    </shape>
+                </rotate>
+            </item>
+            <item android:left="13dp">
+                <rotate android:fromDegrees="135" android:toDegrees="135" android:pivotX="60%" android:pivotY="50%">
+                    <shape android:shape="line">
+                        <stroke android:width="5dp" android:color="#009900" />
+                    </shape>
+                </rotate>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_checked="false">
+        <layer-list>
+            <item android:left="12dp">
+                <shape>
+                    <stroke android:width="2px" android:color="@color/azul" />
+                    <size android:width="24dp" android:height="24dp" />
+                    <corners android:radius="@dimen/raio" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+</selector>
