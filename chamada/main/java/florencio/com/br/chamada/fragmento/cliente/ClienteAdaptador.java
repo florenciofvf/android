@@ -14,35 +14,35 @@ import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Cliente;
 
 public class ClienteAdaptador extends BaseAdapter {
-    private final List<Cliente> clientes;
+    private final List<Cliente> objetos;
     private final boolean modoExclusao;
     private final Context contexto;
 
-    public ClienteAdaptador(List<Cliente> clientes, Context contexto, boolean modoExclusao) {
+    public ClienteAdaptador(List<Cliente> objetos, Context contexto, boolean modoExclusao) {
         this.modoExclusao = modoExclusao;
-        this.clientes = clientes;
+        this.objetos = objetos;
         this.contexto = contexto;
     }
 
     @Override
     public int getCount() {
-        return clientes.size();
+        return objetos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return clientes.get(position);
+        return objetos.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        Cliente cliente = clientes.get(position);
-        return cliente.get_id();
+        Cliente objeto = objetos.get(position);
+        return objeto.get_id();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Cliente cliente = clientes.get(position);
+        Cliente objeto = objetos.get(position);
 
         if(convertView == null) {
             if(modoExclusao) {
@@ -58,8 +58,8 @@ public class ClienteAdaptador extends BaseAdapter {
                     @Override
                     public void onClick(View v) {
                         CheckBox checkBox = (CheckBox)v;
-                        Cliente cliente = (Cliente)checkBox.getTag();
-                        cliente.setSelecionado(checkBox.isChecked());
+                        Cliente objeto = (Cliente)checkBox.getTag();
+                        objeto.setSelecionado(checkBox.isChecked());
                         notifyDataSetChanged();
                     }
                 });
@@ -69,11 +69,11 @@ public class ClienteAdaptador extends BaseAdapter {
         }
 
         Cache cache = (Cache)convertView.getTag();
-        cache.refresh(cliente);
+        cache.atualizarViews(objeto);
 
         if(modoExclusao) {
-            cache.selecionado.setChecked(cliente.isSelecionado());
-            cache.selecionado.setTag(cliente);
+            cache.selecionado.setChecked(objeto.isSelecionado());
+            cache.selecionado.setTag(objeto);
         }
 
         return convertView;
@@ -98,9 +98,9 @@ public class ClienteAdaptador extends BaseAdapter {
             }
         }
 
-        void refresh(Cliente cliente) {
-            nome.setText(cliente.getNome());
-            email.setText(cliente.getEmail());
+        void atualizarViews(Cliente objeto) {
+            nome.setText(objeto.getNome());
+            email.setText(objeto.getEmail());
         }
     }
 }

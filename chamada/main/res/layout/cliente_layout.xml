@@ -16,7 +16,9 @@
             android:hint="@string/label_nome"
             android:id="@+id/nomeCliente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -28,7 +30,9 @@
             android:hint="@string/label_email"
             android:id="@+id/emailCliente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -41,13 +45,15 @@
             android:id="@+id/btnCancelarCliente"
             android:text="@string/label_cancelar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
 
         <Button
             android:id="@+id/btnSalvarCliente"
             android:text="@string/label_salvar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            />
 
     </LinearLayout>
 </LinearLayout>

@@ -12,14 +12,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import florencio.com.br.chamada.fragmento.curso.CursoDialogo;
+import florencio.com.br.chamada.fragmento.curso.CursoListagem;
 import florencio.com.br.chamada.fragmento.cliente.ClienteDialogo;
 import florencio.com.br.chamada.fragmento.cliente.ClienteListagem;
+import florencio.com.br.chamada.fragmento.instrutor.InstrutorDialogo;
+import florencio.com.br.chamada.fragmento.instrutor.InstrutorListagem;
+import florencio.com.br.chamada.fragmento.laboratorio.LaboratorioDialogo;
+import florencio.com.br.chamada.fragmento.laboratorio.LaboratorioListagem;
+import florencio.com.br.chamada.fragmento.frequencia.FrequenciaDialogo;
+import florencio.com.br.chamada.fragmento.frequencia.FrequenciaListagem;
+import florencio.com.br.chamada.fragmento.status_chamada.StatusChamadaDialogo;
+import florencio.com.br.chamada.fragmento.status_chamada.StatusChamadaListagem;
+import florencio.com.br.chamada.fragmento.status_turma.StatusTurmaDialogo;
+import florencio.com.br.chamada.fragmento.status_turma.StatusTurmaListagem;
+import florencio.com.br.chamada.fragmento.turno.TurnoDialogo;
+import florencio.com.br.chamada.fragmento.turno.TurnoListagem;
 import florencio.com.br.chamada.util.Constantes;
 
 public class MainActivity extends AppCompatActivity {
+    private ActionBarDrawerToggle controleMenu;
     private NavigationView menuLateralView;
     private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle controleMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +70,33 @@ public class MainActivity extends AppCompatActivity {
     private class OuvinteMenuLateral implements NavigationView.OnNavigationItemSelectedListener {
         @Override
         public boolean onNavigationItemSelected(MenuItem item) {
-            if(item.getItemId() == R.id.menuItemCliente) {
-                Intent it = new Intent(MainActivity.this, TemplateActivity.class);
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeCustomAnimation(MainActivity.this, R.anim.invocando_entrada, R.anim.invocando_saida);
+            Intent it = new Intent(MainActivity.this, TemplateActivity.class);
+            TemplateParametro parametro = null;
 
-                TemplateParametro parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_cliente), ClienteListagem.class, ClienteDialogo.class);
-
-                it.putExtra(Constantes.TEMPLATE_PARAMETRO, parametro);
-
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeCustomAnimation(MainActivity.this, R.anim.invocando_entrada, R.anim.invocando_saida);
-                startActivity(it, options.toBundle());
+            switch (item.getItemId()) {
+                case R.id.menuItemCliente:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_cliente), ClienteListagem.class, ClienteDialogo.class); break;
+                case R.id.menuItemInstrutor:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_instrutor), InstrutorListagem.class, InstrutorDialogo.class); break;
+                case R.id.menuItemLaboratorio:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_laboratorio), LaboratorioListagem.class, LaboratorioDialogo.class); break;
+                case R.id.menuItemFrequencia:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_frequencia), FrequenciaListagem.class, FrequenciaDialogo.class); break;
+                case R.id.menuItemStatusTurma:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_status_turma), StatusTurmaListagem.class, StatusTurmaDialogo.class); break;
+                case R.id.menuItemStatusChamada:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_status_chamada), StatusChamadaListagem.class, StatusChamadaDialogo.class); break;
+                case R.id.menuItemCurso:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_curso), CursoListagem.class, CursoDialogo.class); break;
+                case R.id.menuItemTurno:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_turno), TurnoListagem.class, TurnoDialogo.class); break;
             }
 
+            it.putExtra(Constantes.TEMPLATE_PARAMETRO, parametro);
+            startActivity(it, options.toBundle());
             drawerLayout.closeDrawers();
             return true;
         }
     }
-
 }

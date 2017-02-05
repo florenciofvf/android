@@ -8,19 +8,21 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
-import florencio.com.br.chamada.dominio.Cliente;
 import florencio.com.br.chamada.dominio.Entidade;
 import florencio.com.br.chamada.fragmento.FragmentoDialogo;
 import florencio.com.br.chamada.fragmento.FragmentoListagem;
 import florencio.com.br.chamada.fragmento.FragmentoOuvinte;
 import florencio.com.br.chamada.fragmento.FragmentoParametro;
+import florencio.com.br.chamada.servico.ChamadaExcecao;
+import florencio.com.br.chamada.servico.ChamadaServico;
 import florencio.com.br.chamada.util.Constantes;
 import florencio.com.br.chamada.util.ReflexaoUtil;
 
-public class TemplateActivity extends AppCompatActivity
-        implements FragmentoOuvinte {
+public class TemplateActivity extends AppCompatActivity implements FragmentoOuvinte {
     private TemplateParametro templateParametro;
+    private ChamadaServico chamadaServico;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +33,14 @@ public class TemplateActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbarContainer);
         toolbar.setTitle(templateParametro.getTitulo());
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FragmentoParametro parametro = new FragmentoParametro();
-
         FragmentoListagem listagem = ReflexaoUtil.criarFragmentoListagem(templateParametro.getClasseFragmentoListagem(), parametro);
-
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-
-        ft.replace(R.id.conteudoTemplate, (Fragment) listagem);
+        ft.replace(R.id.conteudoTemplate, (Fragment) listagem, Constantes.TAG_FRAGMENTO_LISTAGEM);
         ft.commit();
     }
 
@@ -62,10 +60,9 @@ public class TemplateActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.menuItemAdicionar) {
             FragmentoParametro parametro = new FragmentoParametro();
-            parametro.setTitulo("Novo " + templateParametro.getTitulo());
+            parametro.setTitulo(getString(R.string.label_novo) + Constantes.ESPACO + templateParametro.getTitulo());
 
             FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(templateParametro.getClasseFragmentoDialogo(), parametro);
-
             dialogo.exibir(getSupportFragmentManager());
         }
 
@@ -75,11 +72,47 @@ public class TemplateActivity extends AppCompatActivity
     @Override
     public void clickItemListagem(Entidade entidade) {
         FragmentoParametro parametro = new FragmentoParametro();
-        parametro.setTitulo("Atualizar " + templateParametro.getTitulo());
+        parametro.setTitulo(getString(R.string.label_atualizar) + Constantes.ESPACO + templateParametro.getTitulo());
         parametro.setEntidade(entidade);
 
         FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(templateParametro.getClasseFragmentoDialogo(), parametro);
-
         dialogo.exibir(getSupportFragmentManager());
+    }
+
+    @Override
+    public String getMsgCampoObrigatorio() {
+        return getString(R.string.msg_erro_campo_obrigatorio);
+    }
+
+    private void mensagem(int idRecurso) {
+        mensagem(getString(idRecurso));
+    }
+
+    public void mensagem(String msg) {
+        Toast.makeText(this, msg, Constantes.DURACAO_PADRAO_MENSAGENS).show();
+    }
+
+    @Override
+    public void salvar(Entidade entidade) {
+        try {
+            getChamadaServico().salvar(entidade);
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentoListagem listagem = (FragmentoListagem) fm.findFragmentByTag(Constantes.TAG_FRAGMENTO_LISTAGEM);
+            listagem.atualizarListagem();
+
+            mensagem(R.string.msg_sucesso_salvar);
+        } catch (ChamadaExcecao chamadaExcecao) {
+            mensagem(chamadaExcecao.getIdStringErro());
+        }
+    }
+
+    @Override
+    public ChamadaServico getChamadaServico() {
+        if(chamadaServico == null) {
+            chamadaServico = new ChamadaServico(this);
+        }
+
+        return chamadaServico;
     }
 }

@@ -1,20 +1,48 @@
 <resources>
     <string name="app_name">Chamada</string>
 
+    <string name="msg_erro_registro_duplicado">Tentativa de duplicação do registro</string>
+    <string name="msg_sucesso_salvar">Registro salvo com sucesso.</string>
+    <string name="msg_erro_campo_obrigatorio">Campo obrigatório</string>
+    <string name="label_status_chamada">Status Chamada</string>
     <string name="msg_nenhum_registro">Nenhum registro</string>
+    <string name="label_item_chamada">Item Chamada</string>
+    <string name="label_status_turma">Status Turma</string>
     <string name="label_laboratorio">Laboratório</string>
+    <string name="label_capacidade">Capacidade</string>
     <string name="label_frequencia">Frequência</string>
     <string name="label_config">Configurações</string>
+    <string name="label_atualizar">Atualizar</string>
     <string name="label_descricao">Descrição</string>
+    <string name="label_instrutor">Instrutor</string>
+    <string name="label_matricula">Matrícula</string>
     <string name="label_cancelar">Cancelar</string>
-    <string name="label_cliente">Cliente</string>
+    <string name="label_chamada">Chamada</string>
     <string name="label_excluir">Excluir</string>
+    <string name="label_cliente">Cliente</string>
     <string name="label_salvar">Salvar</string>
     <string name="label_email">E-mail</string>
     <string name="label_turno">Turno</string>
-    <string name="label_turma">Turma</string>
+    <string name="label_curso">Curso</string>
     <string name="label_todos">Todos</string>
-    <string name="label_nome">Nome</string>
+    <string name="label_turma">Turma</string>
+    <string name="label_letra">Letra</string>
     <string name="label_novo">Novo</string>
+    <string name="label_nome">Nome</string>
+
+    <plurals name="msg_sucesso_excluir">
+        <item quantity="one">Registro excluído com sucesso.</item>
+        <item quantity="other">Registros excluídos com sucesso.</item>
+    </plurals>
+
+    <plurals name="msg_erro_excluir">
+        <item quantity="one">%d registro não pode ser excluído.</item>
+        <item quantity="other">%d registros não podem ser excluídos.</item>
+    </plurals>
+
+    <plurals name="msg_selecionado">
+        <item quantity="one">%d selecionado</item>
+        <item quantity="other">%d selecionados</item>
+    </plurals>
 
 </resources>

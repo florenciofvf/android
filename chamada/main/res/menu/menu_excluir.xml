@@ -8,14 +8,16 @@
         android:id="@+id/menuItemExcluir"
         android:icon="@android:drawable/ic_menu_delete"
         android:title="@string/label_excluir"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        />
 
     <item
-        android:id="@+id/menuItemTodos"
+        android:id="@+id/menuItemCheckTodos"
         android:title="@string/label_todos"
         android:checkable="true"
         android:checked="true"
         app:actionViewClass="android.support.v7.widget.AppCompatCheckBox"
-        app:showAsAction="always"/>
+        app:showAsAction="always"
+        />
 
 </menu>
