@@ -6,13 +6,13 @@
     <item android:id="@+id/menuItemInstrutor"       android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_instrutor" />
     <item android:id="@+id/menuItemLaboratorio"     android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_laboratorio" />
     <item android:id="@+id/menuItemFrequencia"      android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_frequencia" />
-    <!--item android:id="@+id/menuItemMatricula"       android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_matricula" /-->
-    <!--item android:id="@+id/menuItemTurma"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_turma" /-->
     <item android:id="@+id/menuItemStatusTurma"     android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_status_turma" />
-    <item android:id="@+id/menuItemCurso"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_curso" />
-    <!--item android:id="@+id/menuItemChamada"         android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_chamada" /-->
-    <item android:id="@+id/menuItemTurno"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_turno" />
-    <!--item android:id="@+id/menuItemItemChamada"     android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_item_chamada" /-->
     <item android:id="@+id/menuItemStatusChamada"   android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_status_chamada" />
+    <item android:id="@+id/menuItemCurso"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_curso" />
+    <item android:id="@+id/menuItemTurno"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_turno" />
+    <item android:id="@+id/menuItemTurma"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_turma" />
+    <item android:id="@+id/menuItemMatricula"       android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_matricula" />
+    <!--item android:id="@+id/menuItemChamada"         android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_chamada" /-->
+    <!--item android:id="@+id/menuItemItemChamada"     android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_item_chamada" /-->
 
 </menu>

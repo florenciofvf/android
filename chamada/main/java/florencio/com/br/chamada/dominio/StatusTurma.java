@@ -16,6 +16,14 @@ public class StatusTurma extends Entidade {
     public StatusTurma() {
     }
 
+    public StatusTurma(Long _id) {
+        this._id = _id;
+    }
+
+    public StatusTurma(String nome) {
+        this.nome = nome;
+    }
+
     public StatusTurma(Long _id, String nome, String descricao) {
         this._id = _id;
         this.nome = nome;
@@ -23,6 +31,11 @@ public class StatusTurma extends Entidade {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 

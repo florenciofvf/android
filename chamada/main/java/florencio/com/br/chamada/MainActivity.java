@@ -22,10 +22,13 @@ import florencio.com.br.chamada.fragmento.laboratorio.LaboratorioDialogo;
 import florencio.com.br.chamada.fragmento.laboratorio.LaboratorioListagem;
 import florencio.com.br.chamada.fragmento.frequencia.FrequenciaDialogo;
 import florencio.com.br.chamada.fragmento.frequencia.FrequenciaListagem;
+import florencio.com.br.chamada.fragmento.matricula.MatriculaTurmaListagem;
 import florencio.com.br.chamada.fragmento.status_chamada.StatusChamadaDialogo;
 import florencio.com.br.chamada.fragmento.status_chamada.StatusChamadaListagem;
 import florencio.com.br.chamada.fragmento.status_turma.StatusTurmaDialogo;
 import florencio.com.br.chamada.fragmento.status_turma.StatusTurmaListagem;
+import florencio.com.br.chamada.fragmento.turma.TurmaDialogo;
+import florencio.com.br.chamada.fragmento.turma.TurmaListagem;
 import florencio.com.br.chamada.fragmento.turno.TurnoDialogo;
 import florencio.com.br.chamada.fragmento.turno.TurnoListagem;
 import florencio.com.br.chamada.util.Constantes;
@@ -91,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
                     parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_curso), CursoListagem.class, CursoDialogo.class); break;
                 case R.id.menuItemTurno:
                     parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_turno), TurnoListagem.class, TurnoDialogo.class); break;
+                case R.id.menuItemTurma:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_turma), TurmaListagem.class, TurmaDialogo.class); break;
+                case R.id.menuItemMatricula:
+                    parametro = TemplateParametro.criarTemplateParametro(getString(R.string.label_matricula), MatriculaTurmaListagem.class, null); break;
             }
 
             it.putExtra(Constantes.TEMPLATE_PARAMETRO, parametro);

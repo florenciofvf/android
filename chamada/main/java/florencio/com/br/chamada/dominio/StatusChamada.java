@@ -16,6 +16,14 @@ public class StatusChamada extends Entidade {
     public StatusChamada() {
     }
 
+    public StatusChamada(Long _id) {
+        this._id = _id;
+    }
+
+    public StatusChamada(String descricao) {
+        this.descricao = descricao;
+    }
+
     public StatusChamada(Long _id, String letra, String descricao) {
         this._id = _id;
         this.letra = letra;
@@ -24,6 +32,11 @@ public class StatusChamada extends Entidade {
 
     public String getLetra() {
         return letra;
+    }
+
+    @Override
+    public String toString() {
+        return descricao;
     }
 
     public void setLetra(String letra) {

@@ -16,6 +16,10 @@ public class Curso extends Entidade {
     public Curso() {
     }
 
+    public Curso(String nome) {
+        this.nome = nome;
+    }
+
     public Curso(Long _id, String nome, String descricao) {
         this._id = _id;
         this.nome = nome;
@@ -23,6 +27,11 @@ public class Curso extends Entidade {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 

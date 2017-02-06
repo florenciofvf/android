@@ -16,6 +16,10 @@ public class Cliente extends Entidade {
     public Cliente() {
     }
 
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+
     public Cliente(Long _id, String nome, String email) {
         this._id = _id;
         this.nome = nome;
@@ -23,6 +27,11 @@ public class Cliente extends Entidade {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 

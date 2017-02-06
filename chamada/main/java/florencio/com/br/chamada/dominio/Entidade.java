@@ -10,13 +10,13 @@ public abstract class Entidade implements Serializable {
     public static final int ID_IDX = 0;
 
     protected boolean selecionado;
-    protected Long _id;
+    protected long _id;
 
-    public Long get_id() {
+    public long get_id() {
         return _id;
     }
 
-    public void set_id(Long _id) {
+    public void set_id(long _id) {
         this._id = _id;
     }
 
@@ -29,7 +29,7 @@ public abstract class Entidade implements Serializable {
     }
 
     public boolean ehNovo() {
-        return _id == null || _id.longValue() == 0;
+        return _id == 0;
     }
 
     public abstract Entidade criar(Cursor cursor);

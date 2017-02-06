@@ -16,6 +16,14 @@ public class Turno extends Entidade {
     public Turno() {
     }
 
+    public Turno(Long _id) {
+        this._id = _id;
+    }
+
+    public Turno(String nome) {
+        this.nome = nome;
+    }
+
     public Turno(Long _id, String nome, String descricao) {
         this._id = _id;
         this.nome = nome;
@@ -23,6 +31,11 @@ public class Turno extends Entidade {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 

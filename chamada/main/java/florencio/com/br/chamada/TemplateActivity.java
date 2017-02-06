@@ -6,9 +6,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.util.Map;
 
 import florencio.com.br.chamada.dominio.Entidade;
 import florencio.com.br.chamada.fragmento.FragmentoDialogo;
@@ -23,6 +26,7 @@ import florencio.com.br.chamada.util.ReflexaoUtil;
 public class TemplateActivity extends AppCompatActivity implements FragmentoOuvinte {
     private TemplateParametro templateParametro;
     private ChamadaServico chamadaServico;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,7 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
 
         templateParametro = (TemplateParametro) getIntent().getSerializableExtra(Constantes.TEMPLATE_PARAMETRO);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbarContainer);
+        toolbar = (Toolbar)findViewById(R.id.toolbarContainer);
         toolbar.setTitle(templateParametro.getTitulo());
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -52,7 +56,10 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_manter, menu);
+        if(templateParametro.getClasseFragmentoDialogo() != null) {
+            getMenuInflater().inflate(R.menu.menu_manter, menu);
+        }
+
         return true;
     }
 
@@ -67,6 +74,44 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void atualizarParametros(Entidade entidade, String subtitulo, Class<?> classeFragmentoListagem, Class<?> classeFragmentoDialogo, Map<String, Entidade> mapa) {
+        toolbar.setTitle(templateParametro.getTitulo() + Constantes.TRACO + subtitulo);
+        toolbar.inflateMenu(R.menu.menu_manter);
+        toolbar.setOnMenuItemClickListener(new OuvinteToolbar());
+        toolbar.setTag(mapa);
+
+        templateParametro.setClasseFragmentoListagem(classeFragmentoListagem);
+        templateParametro.setClasseFragmentoDialogo(classeFragmentoDialogo);
+
+        FragmentoParametro parametro = new FragmentoParametro();
+        parametro.setEntidade(entidade);
+        parametro.setMapa(mapa);
+
+        FragmentoListagem listagem = ReflexaoUtil.criarFragmentoListagem(templateParametro.getClasseFragmentoListagem(), parametro);
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.conteudoTemplate, (Fragment) listagem, Constantes.TAG_FRAGMENTO_LISTAGEM);
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    private class OuvinteToolbar implements Toolbar.OnMenuItemClickListener {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            if(item.getItemId() == R.id.menuItemAdicionar) {
+                FragmentoParametro parametro = new FragmentoParametro();
+                parametro.setMapa((Map<String, Entidade>) toolbar.getTag());
+                parametro.setTitulo(getString(R.string.label_novo) + Constantes.ESPACO + templateParametro.getTitulo());
+
+                FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(templateParametro.getClasseFragmentoDialogo(), parametro);
+                dialogo.exibir(getSupportFragmentManager());
+            }
+
+            return true;
+        }
     }
 
     @Override

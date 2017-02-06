@@ -16,6 +16,14 @@ public class Instrutor extends Entidade {
     public Instrutor() {
     }
 
+    public Instrutor(Long _id) {
+        this._id = _id;
+    }
+
+    public Instrutor(String nome) {
+        this.nome = nome;
+    }
+
     public Instrutor(Long _id, String nome, String email) {
         this._id = _id;
         this.nome = nome;
@@ -23,6 +31,11 @@ public class Instrutor extends Entidade {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 

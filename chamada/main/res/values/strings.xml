@@ -21,6 +21,8 @@
     <string name="label_excluir">Excluir</string>
     <string name="label_cliente">Cliente</string>
     <string name="label_salvar">Salvar</string>
+    <string name="label_inicio">Início</string>
+    <string name="label_status">Status</string>
     <string name="label_email">E-mail</string>
     <string name="label_turno">Turno</string>
     <string name="label_curso">Curso</string>
@@ -29,6 +31,7 @@
     <string name="label_letra">Letra</string>
     <string name="label_novo">Novo</string>
     <string name="label_nome">Nome</string>
+    <string name="label_data">Data</string>
 
     <plurals name="msg_sucesso_excluir">
         <item quantity="one">Registro excluído com sucesso.</item>

@@ -16,6 +16,14 @@ public class Laboratorio extends Entidade {
     public Laboratorio() {
     }
 
+    public Laboratorio(Long _id) {
+        this._id = _id;
+    }
+
+    public Laboratorio(String nome) {
+        this.nome = nome;
+    }
+
     public Laboratorio(Long _id, String nome, Integer capacidade) {
         this._id = _id;
         this.nome = nome;
@@ -23,6 +31,11 @@ public class Laboratorio extends Entidade {
     }
 
     public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
         return nome;
     }
 

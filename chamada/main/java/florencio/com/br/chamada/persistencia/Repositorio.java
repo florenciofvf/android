@@ -11,6 +11,8 @@ import java.util.List;
 
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Entidade;
+import florencio.com.br.chamada.dominio.Matricula;
+import florencio.com.br.chamada.dominio.Turma;
 import florencio.com.br.chamada.servico.ChamadaExcecao;
 
 public class Repositorio {
@@ -25,7 +27,17 @@ public class Repositorio {
 
         SQLiteDatabase db = banco.getReadableDatabase();
 
-        Cursor cursor = db.query(entidade.getClass().getSimpleName(), entidade.getNomeColunas(), null, null, null, null, entidade.getNomeColunaOrderBy());
+        Cursor cursor = null;
+
+        if(entidade instanceof Turma) {
+            cursor = db.rawQuery(((Turma) entidade).getStringConsulta(), null);
+
+        } else if(entidade instanceof Matricula) {
+            cursor = db.rawQuery(((Matricula) entidade).getStringConsulta(), null);
+
+        } else {
+            cursor = db.query(entidade.getClass().getSimpleName(), entidade.getNomeColunas(), null, null, null, null, entidade.getNomeColunaOrderBy());
+        }
 
         while (cursor.moveToNext()) {
             Entidade e = entidade.criar(cursor);

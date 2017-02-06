@@ -9,13 +9,15 @@ import florencio.com.br.chamada.dominio.Curso;
 import florencio.com.br.chamada.dominio.Frequencia;
 import florencio.com.br.chamada.dominio.Instrutor;
 import florencio.com.br.chamada.dominio.Laboratorio;
+import florencio.com.br.chamada.dominio.Matricula;
 import florencio.com.br.chamada.dominio.StatusChamada;
 import florencio.com.br.chamada.dominio.StatusTurma;
+import florencio.com.br.chamada.dominio.Turma;
 import florencio.com.br.chamada.dominio.Turno;
 
 public class BancoHelper extends SQLiteOpenHelper {
 	private static final String BANCO = "CHAMADA";
-	private static final int VERSAO = 2;
+	private static final int VERSAO = 1;
 	
 	public BancoHelper(Context context) {
 		super(context, BANCO, null, VERSAO);
@@ -87,35 +89,38 @@ public class BancoHelper extends SQLiteOpenHelper {
         sb.append("  descricao text not null");
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
-		
-		/*
+
 		sb = new StringBuilder();
-		sb.append(" CREATE TABLE Turma( ");
-		sb.append("  _id integer primary key autoincrement, ");
-		sb.append("  inicio Date not null, ");
-		sb.append("  descricao text not null, ");
-		sb.append("  curso_id integer not null, ");
-		sb.append("  frequencia_id integer not null, ");
-		sb.append("  turno_id integer not null, ");
-		sb.append("  laboratorio_id integer not null, ");
-		sb.append("  foreign key(curso_id)       references Curso      (_id),");
-		sb.append("  foreign key(frequencia_id)  references Frequencia (_id),");
-		sb.append("  foreign key(turno_id)       references Turno      (_id),");
-		sb.append("  foreign key(laboratorio_id) references Laboratorio(_id)");
+        sb.append(" create table " + Turma.class.getSimpleName() + "( ");
+		sb.append("              _id integer primary key autoincrement, ");
+		sb.append("           inicio Date not null, ");
+        sb.append("         curso_id integer not null, ");
+        sb.append("     instrutor_id integer not null, ");
+        sb.append("   laboratorio_id integer not null, ");
+        sb.append("    frequencia_id integer not null, ");
+        sb.append("  status_turma_id integer not null, ");
+        sb.append("         turno_id integer not null, ");
+        sb.append("  foreign key(curso_id)         references Curso      (_id),");
+        sb.append("  foreign key(instrutor_id)     references Instrutor  (_id),");
+        sb.append("  foreign key(laboratorio_id)   references Laboratorio(_id),");
+        sb.append("  foreign key(frequencia_id)    references Frequencia (_id),");
+        sb.append("  foreign key(status_turma_id)  references StatusTurma(_id),");
+        sb.append("  foreign key(turno_id)         references Turno      (_id) ");
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
-		
+
 		sb = new StringBuilder();
-		sb.append(" CREATE TABLE Matricula( ");
-		sb.append("  _id integer primary key autoincrement, ");
-		sb.append("  data Date, ");
+        sb.append(" create table " + Matricula.class.getSimpleName() + "( ");
+		sb.append("         _id integer primary key autoincrement, ");
+		sb.append("        data Date not null, ");
 		sb.append("  cliente_id integer not null, ");
-		sb.append("  turma_id integer not null, ");
+		sb.append("    turma_id integer not null, ");
 		sb.append("  foreign key(cliente_id) references Cliente(_id),");
-		sb.append("  foreign key(turma_id) references Turma(_id)");
+		sb.append("  foreign key(turma_id)   references Turma  (_id)");
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
-		
+
+		/*
 		sb = new StringBuilder();
 		sb.append(" CREATE TABLE CabecalhoChamada( ");
 		sb.append("  _id integer primary key autoincrement, ");
