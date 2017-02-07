@@ -11,7 +11,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
+import java.util.List;
+
+import florencio.com.br.chamada.dominio.Turma;
+import florencio.com.br.chamada.efetivacao.ChamadaActivity;
 import florencio.com.br.chamada.fragmento.curso.CursoDialogo;
 import florencio.com.br.chamada.fragmento.curso.CursoListagem;
 import florencio.com.br.chamada.fragmento.cliente.ClienteDialogo;
@@ -27,16 +34,22 @@ import florencio.com.br.chamada.fragmento.status_chamada.StatusChamadaDialogo;
 import florencio.com.br.chamada.fragmento.status_chamada.StatusChamadaListagem;
 import florencio.com.br.chamada.fragmento.status_turma.StatusTurmaDialogo;
 import florencio.com.br.chamada.fragmento.status_turma.StatusTurmaListagem;
+import florencio.com.br.chamada.fragmento.turma.TurmaAdaptador;
 import florencio.com.br.chamada.fragmento.turma.TurmaDialogo;
 import florencio.com.br.chamada.fragmento.turma.TurmaListagem;
 import florencio.com.br.chamada.fragmento.turno.TurnoDialogo;
 import florencio.com.br.chamada.fragmento.turno.TurnoListagem;
+import florencio.com.br.chamada.servico.ChamadaServico;
 import florencio.com.br.chamada.util.Constantes;
 
 public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle controleMenu;
     private NavigationView menuLateralView;
+    private ChamadaServico chamadaServico;
     private DrawerLayout drawerLayout;
+
+    private List<Turma> objetos;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +66,20 @@ public class MainActivity extends AppCompatActivity {
 
         menuLateralView = (NavigationView) findViewById(R.id.menuLateralView);
         menuLateralView.setNavigationItemSelectedListener(new OuvinteMenuLateral());
+
+        listView = (ListView) findViewById(R.id.listagemTurma);
+        listView.setOnItemClickListener(new OuvinteClickItemListagemTurma());
+        atualizarListagem();
+    }
+
+    public void atualizarListagem() {
+        objetos = (List<Turma>) getChamadaServico().listar(new Turma());
+        setAdaptador();
+    }
+
+    private void setAdaptador() {
+        TurmaAdaptador adaptador = new TurmaAdaptador(objetos, this, false);
+        listView.setAdapter(adaptador);
     }
 
     @Override
@@ -104,6 +131,25 @@ public class MainActivity extends AppCompatActivity {
             startActivity(it, options.toBundle());
             drawerLayout.closeDrawers();
             return true;
+        }
+    }
+
+    public ChamadaServico getChamadaServico() {
+        if(chamadaServico == null) {
+            chamadaServico = new ChamadaServico(this);
+        }
+
+        return chamadaServico;
+    }
+
+    private class OuvinteClickItemListagemTurma implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeCustomAnimation(MainActivity.this, R.anim.invocando_entrada, R.anim.invocando_saida);
+            Intent it = new Intent(MainActivity.this, ChamadaActivity.class);
+            Turma objeto = objetos.get(position);
+            it.putExtra(Constantes.TURMA, objeto);
+            startActivity(it, options.toBundle());
         }
     }
 }

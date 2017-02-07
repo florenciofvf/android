@@ -4,11 +4,13 @@
     <string name="msg_erro_registro_duplicado">Tentativa de duplicação do registro</string>
     <string name="msg_sucesso_salvar">Registro salvo com sucesso.</string>
     <string name="msg_erro_campo_obrigatorio">Campo obrigatório</string>
+    <string name="label_efetivacao">Efetivação de Chamadas</string>
     <string name="label_status_chamada">Status Chamada</string>
     <string name="msg_nenhum_registro">Nenhum registro</string>
     <string name="label_item_chamada">Item Chamada</string>
     <string name="label_status_turma">Status Turma</string>
     <string name="label_laboratorio">Laboratório</string>
+    <string name="label_observacao">Observação</string>
     <string name="label_capacidade">Capacidade</string>
     <string name="label_frequencia">Frequência</string>
     <string name="label_config">Configurações</string>

@@ -67,7 +67,7 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.menuItemAdicionar) {
             FragmentoParametro parametro = new FragmentoParametro();
-            parametro.setTitulo(getString(R.string.label_novo) + Constantes.ESPACO + templateParametro.getTitulo());
+            parametro.setTitulo(getString(R.string.label_novo) + Constantes.TRACO + templateParametro.getTitulo());
 
             FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(templateParametro.getClasseFragmentoDialogo(), parametro);
             dialogo.exibir(getSupportFragmentManager());
@@ -79,6 +79,10 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
     @Override
     public void atualizarParametros(Entidade entidade, String subtitulo, Class<?> classeFragmentoListagem, Class<?> classeFragmentoDialogo, Map<String, Entidade> mapa) {
         toolbar.setTitle(templateParametro.getTitulo() + Constantes.TRACO + subtitulo);
+        Menu menu = toolbar.getMenu();
+        if(menu != null) {
+            menu.clear();
+        }
         toolbar.inflateMenu(R.menu.menu_manter);
         toolbar.setOnMenuItemClickListener(new OuvinteToolbar());
         toolbar.setTag(mapa);
@@ -104,7 +108,7 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
             if(item.getItemId() == R.id.menuItemAdicionar) {
                 FragmentoParametro parametro = new FragmentoParametro();
                 parametro.setMapa((Map<String, Entidade>) toolbar.getTag());
-                parametro.setTitulo(getString(R.string.label_novo) + Constantes.ESPACO + templateParametro.getTitulo());
+                parametro.setTitulo(getString(R.string.label_novo) + Constantes.TRACO + templateParametro.getTitulo());
 
                 FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(templateParametro.getClasseFragmentoDialogo(), parametro);
                 dialogo.exibir(getSupportFragmentManager());
@@ -117,7 +121,7 @@ public class TemplateActivity extends AppCompatActivity implements FragmentoOuvi
     @Override
     public void clickItemListagem(Entidade entidade) {
         FragmentoParametro parametro = new FragmentoParametro();
-        parametro.setTitulo(getString(R.string.label_atualizar) + Constantes.ESPACO + templateParametro.getTitulo());
+        parametro.setTitulo(getString(R.string.label_atualizar) + Constantes.TRACO + templateParametro.getTitulo());
         parametro.setEntidade(entidade);
 
         FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(templateParametro.getClasseFragmentoDialogo(), parametro);

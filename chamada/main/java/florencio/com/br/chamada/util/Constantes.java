@@ -11,6 +11,5 @@ public interface Constantes {
     public static final String CLIENTE = "CLIENTE";
     public static final String TURMA = "TURMA";
     public static final String TRACO = " - ";
-    public static final String ESPACO = " ";
     public static final String VAZIO = "";
 }

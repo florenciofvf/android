@@ -8,8 +8,9 @@
     tools:context="florencio.com.br.chamada.MainActivity">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,8 +22,13 @@
             android:layout_height="wrap_content"
             />
 
-    </LinearLayout>
+        <ListView
+            android:id="@+id/listagemTurma"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
 
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/menuLateralView"
@@ -32,6 +38,5 @@
         app:menu="@menu/menu_lateral"
         android:layout_gravity="start">
     </android.support.design.widget.NavigationView>
-
 
 </android.support.v4.widget.DrawerLayout>

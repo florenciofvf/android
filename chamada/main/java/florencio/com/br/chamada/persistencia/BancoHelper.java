@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import florencio.com.br.chamada.dominio.CabecalhoChamada;
+import florencio.com.br.chamada.dominio.Chamada;
 import florencio.com.br.chamada.dominio.Cliente;
 import florencio.com.br.chamada.dominio.Curso;
 import florencio.com.br.chamada.dominio.Frequencia;
@@ -120,29 +122,27 @@ public class BancoHelper extends SQLiteOpenHelper {
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
 
-		/*
 		sb = new StringBuilder();
-		sb.append(" CREATE TABLE CabecalhoChamada( ");
-		sb.append("  _id integer primary key autoincrement, ");
-		sb.append("  turma_id integer not null, ");
-		sb.append("  dataHora DateTime not null, ");
+		sb.append(" create table " + CabecalhoChamada.class.getSimpleName() + "( ");
+		sb.append("         _id integer primary key autoincrement, ");
+		sb.append("    dataHora DateTime not null, ");
+		sb.append("    turma_id integer not null, ");
 		sb.append("  observacao text, ");
 		sb.append("  foreign key(turma_id) references Turma(_id)");
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
 
 		sb = new StringBuilder();
-		sb.append(" CREATE TABLE Chamada( ");
-		sb.append("  _id integer primary key autoincrement, ");
-		sb.append("  matricula_id integer not null, ");
-		sb.append("  cabecalho_id integer not null, ");
-		sb.append("  status_id integer not null, ");
-		sb.append("  foreign key(cliente_turma_id) references Matricula(_id),");
-		sb.append("  foreign key(cabecalho_id) references CabecalhoChamada(_id),");
-		sb.append("  foreign key(status_id) references Status(_id)");
+		sb.append(" create table " + Chamada.class.getSimpleName() + "( ");
+		sb.append("                   _id integer primary key autoincrement, ");
+		sb.append("  cabecalho_chamada_id integer not null, ");
+        sb.append("          matricula_id integer not null, ");
+        sb.append("     status_chamada_id integer not null, ");
+		sb.append("  foreign key(cabecalho_chamada_id)  references CabecalhoChamada(_id),");
+        sb.append("  foreign key(matricula_id)          references Matricula       (_id),");
+        sb.append("  foreign key(status_chamada_id)     references StatusChamada   (_id)");
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
-		*/
 	}
 
 	@Override
