@@ -16,10 +16,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TemplateActivity" android:parentActivityName=".MainActivity">
-            <meta-data android:name="android.support.PARENT_ACTIVITY" android:value=".MainActivity" />
+        <activity
+            android:name=".TemplateActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
 
+        <activity
+            android:label="@string/label_efetivacao"
+            android:name=".efetivacao.ChamadaActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>
