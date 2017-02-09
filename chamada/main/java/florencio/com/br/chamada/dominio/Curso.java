@@ -55,6 +55,7 @@ public class Curso extends Entidade {
     @Override
     public ContentValues criarContentValues() {
         ContentValues cv = new ContentValues();
+
         cv.put(NOME, nome);
         cv.put(DESCRICAO, descricao);
 

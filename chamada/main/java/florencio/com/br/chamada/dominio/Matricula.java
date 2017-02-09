@@ -42,7 +42,7 @@ public class Matricula extends Entidade {
             dataMatricula = new Date().getTime();
         }
 
-        cv.put(DATA,       data);
+        cv.put(DATA,       dataMatricula);
         cv.put(CLIENTE_ID, cliente.get_id());
         cv.put(TURMA_ID,   turma.get_id());
 

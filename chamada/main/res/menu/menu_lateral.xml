@@ -12,7 +12,5 @@
     <item android:id="@+id/menuItemTurno"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_turno" />
     <item android:id="@+id/menuItemTurma"           android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_turma" />
     <item android:id="@+id/menuItemMatricula"       android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_matricula" />
-    <!--item android:id="@+id/menuItemChamada"         android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_chamada" /-->
-    <!--item android:id="@+id/menuItemItemChamada"     android:icon="@android:drawable/btn_star_big_on" android:title="@string/label_item_chamada" /-->
 
 </menu>

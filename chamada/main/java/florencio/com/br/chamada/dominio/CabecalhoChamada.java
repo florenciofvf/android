@@ -14,6 +14,7 @@ public class CabecalhoChamada extends Entidade {
 
     private Turma turma;
     private Long dataHora;
+    private Integer ordem;
     private String observacao;
 
     private final List<Chamada> chamadas;
@@ -92,6 +93,14 @@ public class CabecalhoChamada extends Entidade {
 
     public void setObservacao(String observacao) {
         this.observacao = observacao;
+    }
+
+    public Integer getOrdem() {
+        return ordem;
+    }
+
+    public void setOrdem(Integer ordem) {
+        this.ordem = ordem;
     }
 }
 

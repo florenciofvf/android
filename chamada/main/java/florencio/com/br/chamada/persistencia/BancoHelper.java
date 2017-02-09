@@ -19,7 +19,7 @@ import florencio.com.br.chamada.dominio.Turno;
 
 public class BancoHelper extends SQLiteOpenHelper {
 	private static final String BANCO = "CHAMADA";
-	private static final int VERSAO = 1;
+	private static final int VERSAO = 2;
 	
 	public BancoHelper(Context context) {
 		super(context, BANCO, null, VERSAO);
@@ -72,6 +72,7 @@ public class BancoHelper extends SQLiteOpenHelper {
         sb.append(" create table " + StatusChamada.class.getSimpleName() + "( ");
 		sb.append("        _id integer primary key autoincrement, ");
 		sb.append("      letra char(1) not null unique, ");
+        sb.append("      ordem integer not null, ");
 		sb.append("  descricao text not null");
 		sb.append(" ) ");
 		db.execSQL(sb.toString());
@@ -147,5 +148,7 @@ public class BancoHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //db.execSQL("alter table " + StatusChamada.class.getSimpleName() + " add ordem integer");
+        //db.execSQL("update " + StatusChamada.class.getSimpleName() + " set ordem = 0");
 	}
 }

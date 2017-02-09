@@ -25,6 +25,7 @@ public class StatusChamadaDialogo extends DialogFragment implements FragmentoDia
     private FragmentoOuvinte fragmentoOuvinte;
     private EditText editDescricao;
     private EditText editLetra;
+    private EditText editOrdem;
 
     @Override
     public void onAttach(Context context) {
@@ -44,6 +45,7 @@ public class StatusChamadaDialogo extends DialogFragment implements FragmentoDia
         View view = inflater.inflate(R.layout.status_chamada_layout, container, false);
 
         editLetra = (EditText) view.findViewById(R.id.letraStatusChamada);
+        editOrdem = (EditText) view.findViewById(R.id.ordemStatusChamada);
         editDescricao = (EditText) view.findViewById(R.id.descricaoStatusChamada);
 
         atualizarViews((StatusChamada) fragmentoParametro.getEntidade());
@@ -88,6 +90,11 @@ public class StatusChamadaDialogo extends DialogFragment implements FragmentoDia
             erros++;
         }
 
+        if(Util.isVazio(editOrdem.getText())) {
+            editOrdem.setError(fragmentoOuvinte.getMsgCampoObrigatorio());
+            erros++;
+        }
+
         if(erros > 0) {
             return;
         }
@@ -101,15 +108,18 @@ public class StatusChamadaDialogo extends DialogFragment implements FragmentoDia
         if(objeto == null) {
             editLetra.setText(Constantes.VAZIO);
             editDescricao.setText(Constantes.VAZIO);
+            editOrdem.setText(Constantes.VAZIO);
         } else {
             editLetra.setText(objeto.getLetra());
             editDescricao.setText(objeto.getDescricao());
+            editOrdem.setText(Integer.toString(objeto.getOrdem()));
         }
     }
 
     private void atualizarObjeto(StatusChamada objeto) {
         objeto.setLetra(editLetra.getText().toString());
         objeto.setDescricao(editDescricao.getText().toString());
+        objeto.setOrdem(Integer.valueOf(editOrdem.getText().toString()));
     }
 
     public void exibir(FragmentManager fm) {

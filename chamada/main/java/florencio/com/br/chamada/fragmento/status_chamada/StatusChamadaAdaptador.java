@@ -12,6 +12,7 @@ import java.util.List;
 
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.StatusChamada;
+import florencio.com.br.chamada.util.Constantes;
 
 public class StatusChamadaAdaptador extends BaseAdapter {
     private final List<StatusChamada> objetos;
@@ -100,7 +101,7 @@ public class StatusChamadaAdaptador extends BaseAdapter {
 
         void atualizarViews(StatusChamada objeto) {
             letra.setText(objeto.getLetra());
-            descricao.setText(objeto.getDescricao());
+            descricao.setText(Integer.toString(objeto.getOrdem()) + Constantes.TRACO + objeto.getDescricao());
         }
     }
 }

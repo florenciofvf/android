@@ -12,6 +12,7 @@ import java.util.List;
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.CabecalhoChamada;
 import florencio.com.br.chamada.dominio.Chamada;
+import florencio.com.br.chamada.util.Constantes;
 import florencio.com.br.chamada.util.Util;
 
 public class CabecalhoChamadaAdaptador extends BaseExpandableListAdapter {
@@ -72,7 +73,7 @@ public class CabecalhoChamadaAdaptador extends BaseExpandableListAdapter {
         }
 
         TextView textViewDataHora = (TextView) convertView.findViewById(R.id.dataHoraCabecalhoChamada);
-        textViewDataHora.setText(Util.formatarDate(cabecalho.getDataHora()));
+        textViewDataHora.setText(Util.formatarDate(cabecalho.getDataHora()) + Constantes.TRACO + cabecalho.getOrdem());
 
         return convertView;
     }

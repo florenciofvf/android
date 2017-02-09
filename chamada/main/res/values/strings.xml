@@ -29,6 +29,7 @@
     <string name="label_turno">Turno</string>
     <string name="label_curso">Curso</string>
     <string name="label_todos">Todos</string>
+    <string name="label_ordem">Ordem</string>
     <string name="label_turma">Turma</string>
     <string name="label_letra">Letra</string>
     <string name="label_novo">Novo</string>

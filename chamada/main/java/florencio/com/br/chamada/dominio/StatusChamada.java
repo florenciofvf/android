@@ -6,12 +6,15 @@ import android.database.Cursor;
 public class StatusChamada extends Entidade {
     public static final String LETRA = "letra";
     public static final String DESCRICAO = "descricao";
+    public static final String ORDEM = "ordem";
 
     public static final int LETRA_IDX = 1;
     public static final int DESCRICAO_IDX = 2;
+    public static final int ORDEM_IDX = 3;
 
     private String letra;
     private String descricao;
+    private Integer ordem;
 
     public StatusChamada() {
     }
@@ -24,10 +27,11 @@ public class StatusChamada extends Entidade {
         this.descricao = descricao;
     }
 
-    public StatusChamada(Long _id, String letra, String descricao) {
+    public StatusChamada(Long _id, String letra, String descricao, Integer ordem) {
         this._id = _id;
         this.letra = letra;
         this.descricao = descricao;
+        this.ordem = ordem;
     }
 
     public String getLetra() {
@@ -53,25 +57,37 @@ public class StatusChamada extends Entidade {
 
     @Override
     public Entidade criar(Cursor cursor) {
-        return new StatusChamada(cursor.getLong(ID_IDX), cursor.getString(LETRA_IDX), cursor.getString(DESCRICAO_IDX));
+        return new StatusChamada(cursor.getLong(ID_IDX),
+                cursor.getString(LETRA_IDX),
+                cursor.getString(DESCRICAO_IDX), cursor.getInt(ORDEM_IDX));
     }
 
     @Override
     public ContentValues criarContentValues() {
         ContentValues cv = new ContentValues();
+
         cv.put(LETRA, letra);
         cv.put(DESCRICAO, descricao);
+        cv.put(ORDEM, ordem);
 
         return cv;
     }
 
     @Override
     public String[] getNomeColunas() {
-        return new String[] {_ID, LETRA, DESCRICAO};
+        return new String[] {_ID, LETRA, DESCRICAO, ORDEM};
     }
 
     @Override
     public String getNomeColunaOrderBy() {
-        return LETRA;
+        return ORDEM;
+    }
+
+    public Integer getOrdem() {
+        return ordem;
+    }
+
+    public void setOrdem(Integer ordem) {
+        this.ordem = ordem;
     }
 }

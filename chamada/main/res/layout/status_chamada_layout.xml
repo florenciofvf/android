@@ -35,6 +35,19 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:hint="@string/label_ordem"
+            android:id="@+id/ordemStatusChamada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
     <LinearLayout
         android:gravity="center_horizontal"
         android:layout_width="match_parent"
