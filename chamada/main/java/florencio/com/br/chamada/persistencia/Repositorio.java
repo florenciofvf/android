@@ -104,7 +104,7 @@ public class Repositorio {
         sb.append(" inner join StatusChamada sta on sta._id = cha.status_chamada_id");
         sb.append(" inner join Cliente cli       on cli._id = mat.cliente_id");
         sb.append(" where cab.turma_id = " + turma.get_id() + " and mat.turma_id = cab.turma_id");
-        sb.append(" order by cab.dataHora");
+        sb.append(" order by cab.dataHora desc");
 
         SQLiteDatabase db = banco.getReadableDatabase();
 
@@ -143,9 +143,11 @@ public class Repositorio {
 
         cabecalhos.addAll(mapa.values());
 
+        int ordem = cabecalhos.size();
+
         for(int i = 0; i < cabecalhos.size(); i++) {
             CabecalhoChamada cab = cabecalhos.get(i);
-            cab.setOrdem(i + 1);
+            cab.setOrdem(ordem--);
         }
 
         db.close();
