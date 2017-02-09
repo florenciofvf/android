@@ -16,10 +16,6 @@ public class Laboratorio extends Entidade {
     public Laboratorio() {
     }
 
-    public Laboratorio(Long _id) {
-        this._id = _id;
-    }
-
     public Laboratorio(String nome) {
         this.nome = nome;
     }

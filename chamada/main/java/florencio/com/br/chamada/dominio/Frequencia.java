@@ -16,10 +16,6 @@ public class Frequencia extends Entidade {
     public Frequencia() {
     }
 
-    public Frequencia(Long _id) {
-        this._id = _id;
-    }
-
     public Frequencia(String nome) {
         this.nome = nome;
     }

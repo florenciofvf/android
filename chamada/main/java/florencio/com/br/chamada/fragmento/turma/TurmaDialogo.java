@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.Date;
+
 import florencio.com.br.chamada.EntidadeAdaptador;
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Curso;
@@ -161,7 +163,7 @@ public class TurmaDialogo extends DialogFragment implements FragmentoDialogo {
 
     private void atualizarViews(Turma objeto) {
         if(objeto == null) {
-            editInicio.setText(Constantes.VAZIO);
+            editInicio.setText(Util.formatarDate(new Date().getTime()));
             comboCurso.setSelection(0);
             comboInstrutor.setSelection(0);
             comboLaboratorio.setSelection(0);

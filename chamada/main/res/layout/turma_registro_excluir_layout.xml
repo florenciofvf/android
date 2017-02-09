@@ -5,7 +5,7 @@
     android:padding="@dimen/padding">
 
     <TextView
-        android:id="@+id/inicioTurmaExcluir"
+        android:id="@+id/nomeCursoExcluir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -15,10 +15,10 @@
         />
 
     <TextView
-        android:id="@+id/nomeCursoExcluir"
+        android:id="@+id/inicioTurmaExcluir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inicioTurmaExcluir"
+        android:layout_below="@id/nomeCursoExcluir"
         />
 
     <CheckBox

@@ -16,10 +16,6 @@ public class Turno extends Entidade {
     public Turno() {
     }
 
-    public Turno(Long _id) {
-        this._id = _id;
-    }
-
     public Turno(String nome) {
         this.nome = nome;
     }

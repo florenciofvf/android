@@ -12,6 +12,7 @@ import java.util.List;
 
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Turma;
+import florencio.com.br.chamada.util.Constantes;
 import florencio.com.br.chamada.util.Util;
 
 public class TurmaAdaptador extends BaseAdapter {
@@ -100,8 +101,10 @@ public class TurmaAdaptador extends BaseAdapter {
         }
 
         void atualizarViews(Turma objeto) {
-            inicio.setText(Util.formatarDate(objeto.getInicio()));
             nomeCurso.setText(objeto.getCurso().getNome());
+            inicio.setText(Util.formatarDate(objeto.getInicio()) + Constantes.TRACO +
+                    objeto.getTurno().getNome() + Constantes.TRACO +
+                    objeto.getStatusTurma().getNome());
         }
     }
 }

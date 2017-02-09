@@ -16,10 +16,6 @@ public class StatusTurma extends Entidade {
     public StatusTurma() {
     }
 
-    public StatusTurma(Long _id) {
-        this._id = _id;
-    }
-
     public StatusTurma(String nome) {
         this.nome = nome;
     }

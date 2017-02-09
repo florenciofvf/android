@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.Date;
+
 import florencio.com.br.chamada.EntidadeAdaptador;
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Cliente;
@@ -109,7 +111,7 @@ public class MatriculaDialogo extends DialogFragment implements FragmentoDialogo
 
     private void atualizarViews(Matricula objeto) {
         if(objeto == null) {
-            editData.setText(Constantes.VAZIO);
+            editData.setText(Util.formatarDate(new Date().getTime()));
             comboCliente.setSelection(0);
         } else {
             editData.setText(Util.formatarDate(objeto.getData()));

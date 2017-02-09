@@ -5,7 +5,7 @@
     android:padding="@dimen/padding">
 
     <TextView
-        android:id="@+id/inicioTurma"
+        android:id="@+id/nomeCurso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -15,10 +15,10 @@
         />
 
     <TextView
-        android:id="@+id/nomeCurso"
+        android:id="@+id/inicioTurma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/inicioTurma"
+        android:layout_below="@id/nomeCurso"
         />
 
 </RelativeLayout>

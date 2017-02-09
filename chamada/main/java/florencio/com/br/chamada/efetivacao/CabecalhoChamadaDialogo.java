@@ -12,6 +12,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Date;
+
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Entidade;
 import florencio.com.br.chamada.dominio.CabecalhoChamada;
@@ -97,7 +99,7 @@ public class CabecalhoChamadaDialogo extends DialogFragment implements Fragmento
 
     private void atualizarViews(CabecalhoChamada objeto) {
         if(objeto == null) {
-            editDataHora.setText(Constantes.VAZIO);
+            editDataHora.setText(Util.formatarDate(new Date().getTime()));
             editObservacao.setText(Constantes.VAZIO);
         } else {
             editDataHora.setText(Util.formatarDate(objeto.getDataHora()));

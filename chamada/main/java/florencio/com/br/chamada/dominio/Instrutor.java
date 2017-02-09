@@ -16,10 +16,6 @@ public class Instrutor extends Entidade {
     public Instrutor() {
     }
 
-    public Instrutor(Long _id) {
-        this._id = _id;
-    }
-
     public Instrutor(String nome) {
         this.nome = nome;
     }

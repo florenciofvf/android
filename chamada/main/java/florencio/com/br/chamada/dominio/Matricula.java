@@ -51,9 +51,11 @@ public class Matricula extends Entidade {
 
     public String getStringConsulta() {
         StringBuilder sb = new StringBuilder("select m._id, m.data, c._id, c.nome, c.email, m.turma_id from Matricula m");
+
         sb.append(" inner join Cliente c on c._id = m.cliente_id");
         sb.append(" inner join Turma t on t._id = m.turma_id");
         sb.append(" where m.turma_id = " + turma.get_id());
+
         return sb.toString();
     }
 
