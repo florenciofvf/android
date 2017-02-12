@@ -19,6 +19,25 @@
         android:layout_height="wrap_content"
         />
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/padding">
+        <TextView android:id="@+id/nomeCurso" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:id="@+id/instrutorTurma" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:gravity="right" android:id="@+id/laboratorioTurma" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:id="@+id/frequenciaTurma" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:gravity="right" android:id="@+id/statusTurma" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:id="@+id/turnoTurma" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <TextView android:gravity="right" android:id="@+id/inicioTurma" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
     <ExpandableListView
         android:indicatorLeft="?android:attr/expandableListPreferredChildIndicatorLeft"
         android:animateLayoutChanges="true"

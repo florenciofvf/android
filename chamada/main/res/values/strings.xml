@@ -2,6 +2,7 @@
     <string name="app_name">Chamada</string>
 
     <string name="msg_erro_registro_duplicado">Tentativa de duplicação do registro</string>
+    <string name="msg_erro_registro_excluido">O registro não pode ser excluído</string>
     <string name="msg_sucesso_salvar">Registro salvo com sucesso.</string>
     <string name="msg_erro_campo_obrigatorio">Campo obrigatório</string>
     <string name="label_efetivacao">Efetivação de Chamadas</string>

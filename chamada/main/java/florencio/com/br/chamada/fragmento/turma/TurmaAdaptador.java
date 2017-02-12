@@ -12,7 +12,6 @@ import java.util.List;
 
 import florencio.com.br.chamada.R;
 import florencio.com.br.chamada.dominio.Turma;
-import florencio.com.br.chamada.util.Constantes;
 import florencio.com.br.chamada.util.Util;
 
 public class TurmaAdaptador extends BaseAdapter {
@@ -82,8 +81,14 @@ public class TurmaAdaptador extends BaseAdapter {
     }
 
     static class Cache {
-        TextView inicio;
         TextView nomeCurso;
+        TextView instrutor;
+        TextView laborator;
+        TextView frequenci;
+        TextView statusTur;
+        TextView turnoTurm;
+        TextView inicioTur;
+
         CheckBox selecionado;
         boolean modoExclusao;
 
@@ -91,20 +96,33 @@ public class TurmaAdaptador extends BaseAdapter {
             this.modoExclusao = modoExclusao;
 
             if(modoExclusao) {
-                inicio = (TextView) view.findViewById(R.id.inicioTurmaExcluir);
                 nomeCurso = (TextView) view.findViewById(R.id.nomeCursoExcluir);
+                instrutor = (TextView) view.findViewById(R.id.instrutorTurmaExcluir);
+                laborator = (TextView) view.findViewById(R.id.laboratorioTurmaExcluir);
+                frequenci = (TextView) view.findViewById(R.id.frequenciaTurmaExcluir);
+                statusTur = (TextView) view.findViewById(R.id.statusTurmaExcluir);
+                turnoTurm = (TextView) view.findViewById(R.id.turnoTurmaExcluir);
+                inicioTur = (TextView) view.findViewById(R.id.inicioTurmaExcluir);
                 selecionado = (CheckBox)view.findViewById(R.id.selecionadoTurma);
             } else {
-                inicio = (TextView) view.findViewById(R.id.inicioTurma);
                 nomeCurso = (TextView) view.findViewById(R.id.nomeCurso);
+                instrutor = (TextView) view.findViewById(R.id.instrutorTurma);
+                laborator = (TextView) view.findViewById(R.id.laboratorioTurma);
+                frequenci = (TextView) view.findViewById(R.id.frequenciaTurma);
+                statusTur = (TextView) view.findViewById(R.id.statusTurma);
+                turnoTurm = (TextView) view.findViewById(R.id.turnoTurma);
+                inicioTur = (TextView) view.findViewById(R.id.inicioTurma);
             }
         }
 
         void atualizarViews(Turma objeto) {
             nomeCurso.setText(objeto.getCurso().getNome());
-            inicio.setText(Util.formatarDate(objeto.getInicio()) + Constantes.TRACO +
-                    objeto.getTurno().getNome() + Constantes.TRACO +
-                    objeto.getStatusTurma().getNome());
+            instrutor.setText(objeto.getInstrutor().getNome());
+            laborator.setText(objeto.getLaboratorio().getNome());
+            frequenci.setText(objeto.getFrequencia().getNome());
+            statusTur.setText(objeto.getStatusTurma().getNome());
+            turnoTurm.setText(objeto.getTurno().getNome());
+            inicioTur.setText(Util.formatarDate(objeto.getInicio()));
         }
     }
 }

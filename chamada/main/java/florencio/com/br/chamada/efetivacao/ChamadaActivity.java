@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import florencio.com.br.chamada.servico.ChamadaExcecao;
 import florencio.com.br.chamada.servico.ChamadaServico;
 import florencio.com.br.chamada.util.Constantes;
 import florencio.com.br.chamada.util.ReflexaoUtil;
+import florencio.com.br.chamada.util.Util;
 
 public class ChamadaActivity extends AppCompatActivity implements CabecalhoChamadaDialogo.CabecalhoChamadaOuvinte {
     private ExpandableListView listViewCabecalho;
@@ -46,7 +48,26 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
         turma = (Turma) getIntent().getSerializableExtra(Constantes.TURMA);
         listViewCabecalho = (ExpandableListView) findViewById(R.id.listagemCabecalhoChamada);
         listViewCabecalho.setOnChildClickListener(new OuvinteClickChildItem());
+        atualizarCabecalho();
         atualizarListagem();
+    }
+
+    private void atualizarCabecalho() {
+        TextView nomeCurso = (TextView) findViewById(R.id.nomeCurso);
+        TextView instrutor = (TextView) findViewById(R.id.instrutorTurma);
+        TextView laborator = (TextView) findViewById(R.id.laboratorioTurma);
+        TextView frequenci = (TextView) findViewById(R.id.frequenciaTurma);
+        TextView statusTur = (TextView) findViewById(R.id.statusTurma);
+        TextView turnoTurm = (TextView) findViewById(R.id.turnoTurma);
+        TextView inicioTur = (TextView) findViewById(R.id.inicioTurma);
+
+        nomeCurso.setText(turma.getCurso().getNome());
+        instrutor.setText(turma.getInstrutor().getNome());
+        laborator.setText(turma.getLaboratorio().getNome());
+        frequenci.setText(turma.getFrequencia().getNome());
+        statusTur.setText(turma.getStatusTurma().getNome());
+        turnoTurm.setText(turma.getTurno().getNome());
+        inicioTur.setText(Util.formatarDate(turma.getInicio()));
     }
 
     public void atualizarListagem() {

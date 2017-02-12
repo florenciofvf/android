@@ -77,11 +77,17 @@ public class Repositorio {
         db.close();
     }
 
-    public void excluir(Entidade entidade) {
+    public void excluir(Entidade entidade) throws ChamadaExcecao {
         SQLiteDatabase db = banco.getWritableDatabase();
 
-        if(!entidade.ehNovo()) {
-            db.delete(entidade.getClass().getSimpleName(), "_id = ?", new String[]{ String.valueOf(entidade.get_id()) });
+        try {
+            if(!entidade.ehNovo()) {
+                db.delete(entidade.getClass().getSimpleName(), "_id = ?", new String[]{ String.valueOf(entidade.get_id()) });
+            }
+        } catch (Exception e) {
+            if(e instanceof SQLiteConstraintException || e.getCause() instanceof SQLiteConstraintException) {
+                throw new ChamadaExcecao(R.string.msg_erro_registro_excluido);
+            }
         }
 
         db.close();

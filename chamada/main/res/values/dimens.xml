@@ -4,6 +4,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="altura_item_combo">40dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="padding">16dp</dimen>
+    <dimen name="padding">8dp</dimen>
     <dimen name="raio">3dp</dimen>
 </resources>

@@ -151,4 +151,12 @@ public class BancoHelper extends SQLiteOpenHelper {
         //db.execSQL("alter table " + StatusChamada.class.getSimpleName() + " add ordem integer");
         //db.execSQL("update " + StatusChamada.class.getSimpleName() + " set ordem = 0");
 	}
+
+	@Override
+	public void onOpen(SQLiteDatabase db) {
+		super.onOpen(db);
+		if(!db.isReadOnly()) {
+			db.setForeignKeyConstraintsEnabled(true);
+		}
+	}
 }

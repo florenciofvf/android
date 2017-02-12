@@ -68,7 +68,7 @@ public class ChamadaServico {
         }
     }
 
-    public void excluir(Entidade entidade) throws ChamadaExcecao{
+    public void excluir(Entidade entidade) throws ChamadaExcecao {
         repositorio.excluir(entidade);
     }
 

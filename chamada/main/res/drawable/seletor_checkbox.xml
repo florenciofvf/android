@@ -3,25 +3,25 @@
 
     <item android:state_checked="true">
         <layer-list>
-            <item android:left="24dp">
+            <item android:left="18dp" android:right="5dp">
                 <shape android:shape="rectangle">
-                    <stroke android:width="2px" android:color="@color/azul" />
+                    <stroke android:width="7px" android:color="@color/azul" />
                     <size android:width="24dp" android:height="24dp" />
                     <corners android:radius="@dimen/raio" />
                 </shape>
             </item>
-            <item android:left="30dp">
-                <rotate android:fromDegrees="45" android:toDegrees="45" android:pivotX="20%" android:pivotY="10%">
+            <item android:left="20dp">
+                <rotate android:fromDegrees="41" android:toDegrees="41" android:pivotX="20%" android:pivotY="10%">
                     <shape android:shape="line">
-                        <stroke android:width="5dp" android:color="#009900" />
+                        <stroke android:width="7dp" android:color="#009900" />
                         <size android:width="24dp" android:height="24dp" />
                     </shape>
                 </rotate>
             </item>
-            <item android:left="26dp">
-                <rotate android:fromDegrees="130" android:toDegrees="130" android:pivotX="63%" android:pivotY="50%">
+            <item android:left="19dp">
+                <rotate android:fromDegrees="135" android:toDegrees="135" android:pivotX="63%" android:pivotY="50%">
                     <shape android:shape="line">
-                        <stroke android:width="5dp" android:color="#009900" />
+                        <stroke android:width="7dp" android:color="#009900" />
                         <size android:width="24dp" android:height="24dp" />
                     </shape>
                 </rotate>
@@ -31,10 +31,10 @@
 
     <item android:state_checked="false">
         <layer-list>
-            <item android:left="24dp">
+            <item android:left="18dp" android:right="5dp">
                 <shape android:shape="rectangle">
-                    <stroke android:width="2px" android:color="@color/azul" />
-                    <size android:width="30dp" android:height="24dp" />
+                    <stroke android:width="7px" android:color="@color/azul" />
+                    <size android:width="24dp" android:height="24dp" />
                     <corners android:radius="@dimen/raio" />
                 </shape>
             </item>
