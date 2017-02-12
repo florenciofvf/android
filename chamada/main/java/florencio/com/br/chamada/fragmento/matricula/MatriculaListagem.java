@@ -4,16 +4,19 @@ import android.content.Context;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,14 +30,23 @@ import florencio.com.br.chamada.fragmento.FragmentoOuvinte;
 import florencio.com.br.chamada.fragmento.FragmentoParametro;
 import florencio.com.br.chamada.servico.ChamadaExcecao;
 import florencio.com.br.chamada.util.Constantes;
+import florencio.com.br.chamada.util.Util;
 
-public class MatriculaListagem extends ListFragment implements FragmentoListagem {
+public class MatriculaListagem extends Fragment implements FragmentoListagem {
     private FragmentoParametro fragmentoParametro;
     private FragmentoOuvinte fragmentoOuvinte;
     private MatriculaAdaptador adaptador;
     private List<Matricula> objetos;
     private ActionMode actionMode;
     private ListView listView;
+
+    private TextView nomeCurso;
+    private TextView instrutor;
+    private TextView laborator;
+    private TextView frequenci;
+    private TextView statusTur;
+    private TextView turnoTurm;
+    private TextView inicioTur;
 
     @Override
     public void onAttach(Context context) {
@@ -48,13 +60,43 @@ public class MatriculaListagem extends ListFragment implements FragmentoListagem
         fragmentoParametro = (FragmentoParametro) getArguments().getSerializable(Constantes.FRAGMENTO_PARAMETRO);
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View layout = inflater.inflate(R.layout.matricula_listagem_layout, container, false);
+
+        listView = (ListView) layout.findViewById(R.id.listagemMatricula);
+        nomeCurso = (TextView) layout.findViewById(R.id.nomeCurso);
+        instrutor = (TextView) layout.findViewById(R.id.instrutorTurma);
+        laborator = (TextView) layout.findViewById(R.id.laboratorioTurma);
+        frequenci = (TextView) layout.findViewById(R.id.frequenciaTurma);
+        statusTur = (TextView) layout.findViewById(R.id.statusTurma);
+        turnoTurm = (TextView) layout.findViewById(R.id.turnoTurma);
+        inicioTur = (TextView) layout.findViewById(R.id.inicioTurma);
+
+        return layout;
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setRetainInstance(true);
-        listView = getListView();
         listView.setOnItemLongClickListener(new OuvinteLongClickListener());
+        listView.setOnItemClickListener(new OuvinteClickItemListener());
+        atualizarCabecalho();
         atualizarListagem();
+    }
+
+    private void atualizarCabecalho() {
+        Turma turma = (Turma) fragmentoParametro.getEntidade(Constantes.TURMA);
+
+        nomeCurso.setText(turma.getCurso().getNome());
+        instrutor.setText(turma.getInstrutor().getNome());
+        laborator.setText(turma.getLaboratorio().getNome());
+        frequenci.setText(turma.getFrequencia().getNome());
+        statusTur.setText(turma.getStatusTurma().getNome());
+        turnoTurm.setText(turma.getTurno().getNome());
+        inicioTur.setText(Util.formatarDate(turma.getInicio()));
     }
 
     @Override
@@ -69,16 +111,18 @@ public class MatriculaListagem extends ListFragment implements FragmentoListagem
     private void setAdaptador(boolean modoExclusao) {
         adaptador = new MatriculaAdaptador(objetos, getActivity(), modoExclusao);
         adaptador.registerDataSetObserver(new ObservadorAdapater());
-        setListAdapter(adaptador);
+        listView.setAdapter(adaptador);
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        if(actionMode == null) {
-            //Matricula objeto = objetos.get(position);
-            //fragmentoOuvinte.clickItemListagem(objeto);
-        } else {
-            atualizarTituloSelecionados();
+    private class OuvinteClickItemListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if(actionMode == null) {
+                //Matricula objeto = objetos.get(position);
+                //fragmentoOuvinte.clickItemListagem(objeto);
+            } else {
+                atualizarTituloSelecionados();
+            }
         }
     }
 
