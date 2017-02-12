@@ -1,9 +1,15 @@
 package florencio.com.br.chamada.efetivacao;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +36,7 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
     private List<StatusChamada> listaStatus;
     private List<CabecalhoChamada> objetos;
     private ChamadaServico chamadaServico;
+    private boolean editarCabecalho;
     private Toolbar toolbar;
     private Turma turma;
 
@@ -48,6 +55,7 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
         turma = (Turma) getIntent().getSerializableExtra(Constantes.TURMA);
         listViewCabecalho = (ExpandableListView) findViewById(R.id.listagemCabecalhoChamada);
         listViewCabecalho.setOnChildClickListener(new OuvinteClickChildItem());
+        listViewCabecalho.setOnGroupClickListener(new OuvinteClickGroupItem());
         atualizarCabecalho();
         atualizarListagem();
     }
@@ -68,6 +76,26 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
         statusTur.setText(turma.getStatusTurma().getNome());
         turnoTurm.setText(turma.getTurno().getNome());
         inicioTur.setText(Util.formatarDate(turma.getInicio()));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_cabecalho, menu);
+
+        MenuItem itemTodos = menu.findItem(R.id.menuItemEditCabecalho);
+        AppCompatCheckBox check = (AppCompatCheckBox) MenuItemCompat.getActionView(itemTodos);
+        check.setPadding(0, 0, Constantes.PADDING_RIGHT_CHECK_TODOS, 0);
+        check.setOnClickListener(new ChecarEditarCabecalho());
+
+        return true;
+    }
+
+    private class ChecarEditarCabecalho implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            AppCompatCheckBox checkTodos = (AppCompatCheckBox)v;
+            editarCabecalho = checkTodos.isChecked();
+        }
     }
 
     public void atualizarListagem() {
@@ -135,6 +163,27 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
             } catch (ChamadaExcecao chamadaExcecao) {
                 chamadaExcecao.printStackTrace();
             }
+            return true;
+        }
+    }
+
+    private class OuvinteClickGroupItem implements ExpandableListView.OnGroupClickListener {
+        @Override
+        public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+            if(!editarCabecalho) {
+                return false;
+            }
+
+            CabecalhoChamada cabecalho = objetos.get(groupPosition);
+
+            FragmentoParametro parametro = new FragmentoParametro();
+            parametro.setEntidade(cabecalho);
+            parametro.putEntidade(Constantes.TURMA, turma);
+            parametro.setTitulo(getString(R.string.label_novo) + Constantes.TRACO + toolbar.getTitle());
+
+            FragmentoDialogo dialogo = ReflexaoUtil.criarFragmentoDialogo(CabecalhoChamadaDialogo.class, parametro);
+            dialogo.exibir(getSupportFragmentManager());
+
             return true;
         }
     }

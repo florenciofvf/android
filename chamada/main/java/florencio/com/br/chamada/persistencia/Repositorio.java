@@ -103,8 +103,9 @@ public class Repositorio {
         int   STATUS_CHAMADA_ID_IDX = 4;
         int STATUS_CHAMADA_DESC_IDX = 5;
         int        CLIENTE_NOME_IDX = 6;
+        int        CABECALHO_OB_IDX = 7;
 
-        StringBuilder sb = new StringBuilder("select cab._id, cab.dataHora, cha._id, mat._id, sta._id, sta.descricao, cli.nome From CabecalhoChamada cab");
+        StringBuilder sb = new StringBuilder("select cab._id, cab.dataHora, cha._id, mat._id, sta._id, sta.descricao, cli.nome, cab.observacao From CabecalhoChamada cab");
         sb.append(" inner join Chamada cha       on cab._id = cha.cabecalho_chamada_id");
         sb.append(" inner join Matricula mat     on mat._id = cha.matricula_id");
         sb.append(" inner join StatusChamada sta on sta._id = cha.status_chamada_id");
@@ -121,7 +122,7 @@ public class Repositorio {
         while (cursor.moveToNext()) {
             CabecalhoChamada cabecalho = get(cursor.getLong(CABECALHO_ID_IDX), mapa);
             cabecalho.setDataHora(cursor.getLong(CABECALHO_DATA_HORA_IDX));
-
+            cabecalho.setObservacao(cursor.getString(CABECALHO_OB_IDX));
 
             Chamada chamada = new Chamada();
             chamada.set_id(cursor.getLong(CHAMADA_ID_IDX));

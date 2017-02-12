@@ -11,8 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <TextView
-        android:gravity="right"
-        android:layout_gravity="right"
         android:textColor="@color/branco"
         android:id="@+id/dataHoraCabecalhoChamada"
         android:layout_width="match_parent"

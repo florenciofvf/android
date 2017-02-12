@@ -38,6 +38,7 @@ public class ChamadaServico {
         if(entidade instanceof CabecalhoChamada) {
             CabecalhoChamada cabecalho = (CabecalhoChamada) entidade;
             if(!cabecalho.ehNovo()) {
+                repositorio.salvar(cabecalho);
                 return;
             }
 

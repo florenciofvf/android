@@ -73,7 +73,9 @@ public class CabecalhoChamadaAdaptador extends BaseExpandableListAdapter {
         }
 
         TextView textViewDataHora = (TextView) convertView.findViewById(R.id.dataHoraCabecalhoChamada);
-        textViewDataHora.setText(Util.formatarDate(cabecalho.getDataHora()) + Constantes.TRACO + cabecalho.getOrdem());
+        textViewDataHora.setText(cabecalho.getOrdem() + Constantes.TRACO +
+                Util.formatarDate(cabecalho.getDataHora()) + Constantes.TRACO +
+                cabecalho.getObservacao());
 
         return convertView;
     }
