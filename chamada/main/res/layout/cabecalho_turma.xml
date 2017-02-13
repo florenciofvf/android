@@ -1,44 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/padding">
+    android:padding="@dimen/padding"
+    android:background="@drawable/seletor_borda">
+
+    <TextView
+        android:id="@+id/nomeCurso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:id="@+id/nomeCursoExcluir"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
-
-        <CheckBox
-            android:gravity="right"
-            android:id="@+id/selecionadoTurma"
-            android:button="@drawable/seletor_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/instrutorTurmaExcluir"
+            android:id="@+id/instrutorTurma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <TextView
             android:gravity="right"
-            android:id="@+id/laboratorioTurmaExcluir"
+            android:id="@+id/laboratorioTurma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
@@ -47,33 +35,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:id="@+id/frequenciaTurmaExcluir"
+            android:id="@+id/frequenciaTurma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <TextView
             android:gravity="right"
-            android:id="@+id/statusTurmaExcluir"
+            android:id="@+id/statusTurma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
-            android:id="@+id/turnoTurmaExcluir"
+            android:id="@+id/turnoTurma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <TextView
             android:gravity="right"
-            android:id="@+id/inicioTurmaExcluir"
+            android:id="@+id/inicioTurma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -81,5 +70,4 @@
             android:textStyle="bold"
             />
     </LinearLayout>
-
 </LinearLayout>
