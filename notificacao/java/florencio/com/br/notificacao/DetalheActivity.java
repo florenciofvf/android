@@ -1,0 +1,14 @@
+package florencio.com.br.notificacao;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class DetalheActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.detalhe_layout);
+    }
+
+}
