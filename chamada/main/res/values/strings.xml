@@ -11,6 +11,7 @@
     <string name="msg_nenhum_registro">Nenhum registro</string>
     <string name="label_item_chamada">Item Chamada</string>
     <string name="label_status_turma">Status Turma</string>
+    <string name="label_compartilhar">Compartilhar</string>
     <string name="label_laboratorio">Laboratório</string>
     <string name="label_observacao">Observação</string>
     <string name="label_capacidade">Capacidade</string>

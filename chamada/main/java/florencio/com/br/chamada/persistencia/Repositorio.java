@@ -124,9 +124,9 @@ public class Repositorio {
             cabecalho.setDataHora(cursor.getLong(CABECALHO_DATA_HORA_IDX));
             cabecalho.setObservacao(cursor.getString(CABECALHO_OB_IDX));
 
+
             Chamada chamada = new Chamada();
             chamada.set_id(cursor.getLong(CHAMADA_ID_IDX));
-            cabecalho.addChamada(chamada);
 
 
             Matricula matricula = new Matricula();
@@ -143,6 +143,7 @@ public class Repositorio {
             matricula.setCliente(cliente);
 
 
+            cabecalho.addChamada(chamada);
             chamada.setCabecalho(cabecalho);
             chamada.setMatricula(matricula);
             chamada.setStatus(status);

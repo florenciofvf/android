@@ -64,4 +64,18 @@ public class Util {
             }
         }
     }
+
+    public static String completar(String s, int tamanho, char c) {
+        if(s == null) {
+            return Constantes.VAZIO;
+        }
+
+        StringBuilder builder = new StringBuilder(s);
+
+        while(builder.length() < tamanho) {
+            builder.append(c);
+        }
+
+        return builder.toString();
+    }
 }

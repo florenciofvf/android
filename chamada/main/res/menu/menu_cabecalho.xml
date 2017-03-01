@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".TemplateActivity">
 
+    <item android:id="@+id/menuItemCompartilhar"
+        android:title="@string/label_compartilhar"
+        app:showAsAction="ifRoom"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+        />
+
     <item
         android:id="@+id/menuItemEditCabecalho"
         android:title="@string/label_edit_cabecalho"

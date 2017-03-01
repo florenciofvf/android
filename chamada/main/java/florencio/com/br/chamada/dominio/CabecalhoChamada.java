@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import florencio.com.br.chamada.util.Constantes;
+import florencio.com.br.chamada.util.Util;
+
 public class CabecalhoChamada extends Entidade {
     public static final String  DATA_HORA = "dataHora";
     public static final String   TURMA_ID = "turma_id";
@@ -101,6 +104,14 @@ public class CabecalhoChamada extends Entidade {
 
     public void setOrdem(Integer ordem) {
         this.ordem = ordem;
+    }
+
+    public String getResumo() {
+        return getOrdem() + Constantes.TRACO + Util.formatarDate(getDataHora()) + completar(getObservacao());
+    }
+
+    private String completar(String s) {
+        return Util.isVazio(s) ? Constantes.VAZIO : Constantes.TRACO + s;
     }
 }
 

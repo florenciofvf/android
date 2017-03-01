@@ -73,13 +73,38 @@ public class CabecalhoChamadaAdaptador extends BaseExpandableListAdapter {
         }
 
         TextView textViewDataHora = (TextView) convertView.findViewById(R.id.dataHoraCabecalhoChamada);
-        textViewDataHora.setText(cabecalho.getOrdem() + Constantes.TRACO + Util.formatarDate(cabecalho.getDataHora()) + completar(cabecalho.getObservacao()));
+        textViewDataHora.setText(cabecalho.getResumo());
 
         return convertView;
     }
 
-    private String completar(String s) {
-        return Util.isVazio(s) ? Constantes.VAZIO : Constantes.TRACO + s;
+    public String getStringRelatorio() {
+        StringBuilder builder = new StringBuilder();
+
+        for(CabecalhoChamada cabecalho : cabecalhos) {
+            String resumo = cabecalho.getResumo();
+            builder.append(resumo + Constantes.BARRA_N);
+            builder.append(Util.completar(Constantes.VAZIO, resumo.length(), Constantes.PONTO));
+            builder.append(Constantes.BARRA_N);
+
+            int tamanho = 0;
+            for(Chamada chamada : cabecalho.getChamadas()) {
+                String nome = chamada.getMatricula().getCliente().getNome();
+                if(nome.length() > tamanho) {
+                    tamanho = nome.length();
+                }
+            }
+
+            for(Chamada chamada : cabecalho.getChamadas()) {
+                String nome = chamada.getMatricula().getCliente().getNome();
+                String status = chamada.getStatus().getDescricao();
+                builder.append(Util.completar(nome, tamanho * 2, Constantes.PONTO) + status + Constantes.BARRA_N);
+            }
+
+            builder.append(Constantes.BARRA_N);
+        }
+
+        return builder.toString();
     }
 
     @Override

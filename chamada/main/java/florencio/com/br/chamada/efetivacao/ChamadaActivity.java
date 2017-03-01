@@ -1,15 +1,16 @@
 package florencio.com.br.chamada.efetivacao;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,11 +32,13 @@ import florencio.com.br.chamada.util.ReflexaoUtil;
 import florencio.com.br.chamada.util.Util;
 
 public class ChamadaActivity extends AppCompatActivity implements CabecalhoChamadaDialogo.CabecalhoChamadaOuvinte {
+    private ShareActionProvider shareActionProvider;
     private ExpandableListView listViewCabecalho;
     private CabecalhoChamadaAdaptador adaptador;
     private List<StatusChamada> listaStatus;
     private List<CabecalhoChamada> objetos;
     private ChamadaServico chamadaServico;
+    private StringBuilder stringBuilder;
     private boolean editarCabecalho;
     private Toolbar toolbar;
     private Turma turma;
@@ -76,6 +79,27 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
         statusTur.setText(turma.getStatusTurma().getNome());
         turnoTurm.setText(turma.getTurno().getNome());
         inicioTur.setText(Util.formatarDate(turma.getInicio()));
+
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(getString(R.string.label_curso)        + Constantes.DOIS_PONTOS + turma.getCurso().getNome()           + Constantes.BARRA_N);
+        stringBuilder.append(getString(R.string.label_instrutor)    + Constantes.DOIS_PONTOS + turma.getInstrutor().getNome()       + Constantes.BARRA_N);
+        stringBuilder.append(getString(R.string.label_laboratorio)  + Constantes.DOIS_PONTOS + turma.getLaboratorio().getNome()     + Constantes.BARRA_N);
+        stringBuilder.append(getString(R.string.label_frequencia)   + Constantes.DOIS_PONTOS + turma.getFrequencia().getNome()      + Constantes.BARRA_N);
+        stringBuilder.append(getString(R.string.label_status_turma) + Constantes.DOIS_PONTOS + turma.getStatusTurma().getNome()     + Constantes.BARRA_N);
+        stringBuilder.append(getString(R.string.label_turno)        + Constantes.DOIS_PONTOS + turma.getTurno().getNome()           + Constantes.BARRA_N);
+        stringBuilder.append(getString(R.string.label_inicio)       + Constantes.DOIS_PONTOS + Util.formatarDate(turma.getInicio()) + Constantes.BARRA_N);
+        stringBuilder.append(Constantes.BARRA_N);
+        stringBuilder.append(Constantes.BARRA_N);
+    }
+
+    public void atualizarListagem() {
+        objetos = getChamadaServico().listarCabecalhoChamada(turma);
+        setAdaptador();
+    }
+
+    private void setAdaptador() {
+        adaptador = new CabecalhoChamadaAdaptador(objetos, this);
+        listViewCabecalho.setAdapter(adaptador);
     }
 
     @Override
@@ -87,6 +111,20 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
         check.setPadding(0, 0, Constantes.PADDING_RIGHT_CHECK_TODOS, 0);
         check.setOnClickListener(new ChecarEditarCabecalho());
 
+        MenuItem itemCompartilhar = menu.findItem(R.id.menuItemCompartilhar);
+        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(itemCompartilhar);
+
+        if(adaptador != null && stringBuilder != null) {
+            String relatorio = stringBuilder.toString() + adaptador.getStringRelatorio();
+
+            Intent it = new Intent(Intent.ACTION_SEND);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+            it.setType("text/plain");
+            it.putExtra(Intent.EXTRA_TEXT, relatorio);
+
+            shareActionProvider.setShareIntent(it);
+        }
+
         return true;
     }
 
@@ -96,16 +134,6 @@ public class ChamadaActivity extends AppCompatActivity implements CabecalhoChama
             AppCompatCheckBox checkTodos = (AppCompatCheckBox)v;
             editarCabecalho = checkTodos.isChecked();
         }
-    }
-
-    public void atualizarListagem() {
-        objetos = getChamadaServico().listarCabecalhoChamada(turma);
-        setAdaptador();
-    }
-
-    private void setAdaptador() {
-        adaptador = new CabecalhoChamadaAdaptador(objetos, this);
-        listViewCabecalho.setAdapter(adaptador);
     }
 
     @Override
