@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Armazenamento</string>
+
+    <string-array name="tipos_armazenamento">
+        <item>Armazenamento interno</item>
+        <item>Externo (Público)</item>
+        <item>Externo (Privado)</item>
+        <item>Preferência</item>
+    </string-array>
+</resources>
