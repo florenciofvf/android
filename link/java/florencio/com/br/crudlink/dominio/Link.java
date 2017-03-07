@@ -1,6 +1,8 @@
 package florencio.com.br.crudlink.dominio;
 
-public class Link {
+import java.io.Serializable;
+
+public class Link implements Serializable {
     public static final String NOME_TABELA = "Link";
 
     public static final String        COLUNA_ID = "_id";
