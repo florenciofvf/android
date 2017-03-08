@@ -14,6 +14,7 @@ import florencio.com.br.crudlink.util.Constantes;
 public class MainActivity extends AppCompatActivity {
     private Repositorio repositorio;
     private LinkAdapter adapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         repositorio = new Repositorio(this);
 
-        ListView listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
 
         adapter = new LinkAdapter(repositorio.listar(), this);
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void novoLink(View v) {
         Intent it = new Intent(this, LinkActivity.class);
-        startActivity(it);
+        startActivityForResult(it, Constantes.REQUEST_CODE_LINK_ACTIVITY);
     }
 
     private class OuvinteItemListView implements AdapterView.OnItemClickListener {
@@ -44,7 +45,20 @@ public class MainActivity extends AppCompatActivity {
             Intent it = new Intent(MainActivity.this, LinkActivity.class);
             it.putExtra(Constantes.LINK_SELECIONADO, link);
 
-            startActivity(it);
+            startActivityForResult(it, Constantes.REQUEST_CODE_LINK_ACTIVITY);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == Constantes.REQUEST_CODE_LINK_ACTIVITY &&
+                resultCode == RESULT_OK) {
+
+            adapter = new LinkAdapter(repositorio.listar(), this);
+            listView.setAdapter(adapter);
+
         }
     }
 }
